@@ -1,0 +1,103 @@
+// Переменные цветов======================================================================================
+//Основыные
+$mainColor: #000;
+$primary: #ec1f46;
+$secondery: #f5fafe;
+//Дополнительные
+$dark: #0a223d;
+$light: #fff;
+$button: #4d50ee;
+$footer-color: #bdbdbd;
+
+//Подключение шрифтов через google fonts ======================================================================================
+//Используй плагин Google Fonsts
+
+//Шрифт
+$mainFont: "Lucida Sans";
+$fontSize: 16;
+
+//Минимальная ширина страницы
+$minWidth: 320;
+
+//Максильманая ширина страницы
+$maxWidthPage: 1980;
+
+//Максмальныей размер контейнера
+$maxWidthConteiner: 1200;
+//Отступ у контейнера
+$containerPadding: 30;
+
+//Ширина контейнера с отступами
+$widthConteiner: $maxWidthConteiner + $containerPadding + px;
+
+///ОСНОВЫНЕ НАСТРОКИ СЕЛЕКТОРВ======================================================================================
+
+* {
+  box-sizing: border-box;
+}
+
+.conteiner {
+  max-width: $widthConteiner;
+  margin: auto;
+  //Если паддинг не нужен - закомментировать
+  padding: 0 $containerPadding/2 0 $containerPadding/2 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $mainFont, Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+button {
+  border: none;
+  background: transparent;
+}
+
+//МИКСИНЫ И ФУНКЦИИ==========================================================================================
+
+//Адаптивные размеры
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin valueAdaptive($value, $maxValue, $minValue, $maxWidth: 1440, $minWidth: 320, $bollean: false) {
+  $addSize: $maxValue - $minValue;
+  @if ($bollean==false) {
+    $addWidth: $maxWidthPage - 320;
+    #{$value}: calc(#{$minValue + px} + #{$addSize} * ((100vw - 320px) / #{$addWidth}));
+  } @else {
+    $addWidth: $maxWidth - $minWidth;
+    #{$value}: #{$minValue}px;
+    @media (min-width: #{$minWidth}px) {
+      #{$value}: calc(
+        #{$minValue + px} + #{strip-unit($addSize)} * ((100vw - #{$minWidth}px) / #{strip-unit($addWidth)})
+      );
+    }
+    @media (min-width: #{$maxWidth}px) {
+      #{$value}: #{$maxValue}px;
+    }
+  }
+}
+
+//получение процента от ширин
+
+@function percent($min, $max) {
+  @return calc((#{$min} / #{$max}) * 100%);
+}
+
+// Перевод из пикеселей в rem
+@function rem($px) {
+  @return calc(#{$px} / #{$fontSize} * 1rem);
+}
+
+//============

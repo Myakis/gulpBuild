@@ -1,0 +1,52 @@
+///
+//
+//
+
+//BURGER==================================================================
+
+// .icon-menu {
+//   display: none;
+//   @media (max-width: 1868px) {
+//     position: relative;
+//     width: 30px;
+//     height: 18px;
+//     display: block;
+//     cursor: pointer;
+//     background: none;
+//     border: none;
+//     z-index: 5;
+//     span,
+//     &::before,
+//     &::after {
+//       content: "";
+//       transition: all 0.3s ease 0s;
+//       left: 0;
+//       position: absolute;
+//       width: 100%;
+//       height: 2px;
+//       background: #000;
+//     }
+//     &::before {
+//       top: 0;
+//     }
+//     &::after {
+//       bottom: 0;
+//     }
+//     span {
+//       top: calc(50%-1px);
+//     }
+//     .memu-open & {
+//       span {
+//         transform: scale(0);
+//       }
+//       &::before {
+//         transform: rotate(-45deg);
+//         top: calc(50%-1px);
+//       }
+//       &::before {
+//         transform: rotate(45deg);
+//         bottom: calc(50%-1px);
+//       }
+//     }
+//   }
+// }
