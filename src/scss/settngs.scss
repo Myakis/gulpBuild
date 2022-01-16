@@ -70,21 +70,21 @@ button {
   @return $value / ($value * 0 + 1);
 }
 
-@mixin valueAdaptive($value, $maxValue, $minValue, $maxWidth: 1440, $minWidth: 320, $bollean: false) {
+@mixin valueAdaptive($value, $maxValue, $minValue, $maxWidth: $widthConteiner, $minWidth: 320, $bollean: false) {
   $addSize: $maxValue - $minValue;
-  @if ($bollean==false) {
+  @if ($bollean==1) {
     $addWidth: $maxWidthPage - 320;
-    #{$value}: calc(#{$minValue + px} + #{$addSize} * ((100vw - 320px) / #{$addWidth}));
+    #{$value}: calc(#{rem($minValue)} + #{$addSize} * ((100vw - 320px) / #{$addWidth}));
   } @else {
     $addWidth: $maxWidth - $minWidth;
-    #{$value}: #{$minValue}px;
+    #{$value}: #{rem(#{$minValue})};
     @media (min-width: #{$minWidth}px) {
       #{$value}: calc(
-        #{$minValue + px} + #{strip-unit($addSize)} * ((100vw - #{$minWidth}px) / #{strip-unit($addWidth)})
+        #{rem(#{$minValue})} + #{strip-unit($addSize)} * ((100vw - #{$minWidth}px) / #{strip-unit($addWidth)})
       );
     }
     @media (min-width: #{$maxWidth}px) {
-      #{$value}: #{$maxValue}px;
+      #{$value}: #{rem(#{$maxValue})};
     }
   }
 }
