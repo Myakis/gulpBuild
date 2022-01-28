@@ -1,15 +1,17 @@
 // Переменные цветов======================================================================================
 //Основыные
-$mainColor: #000;
-$primary: #ec1f46;
+$mainColor: #000000;
+$primary: #edc5a2;
 $secondery: #f5fafe;
 //Дополнительные
 $dark: #0a223d;
 $light: #fff;
 $button: #4d50ee;
 $footer-color: #bdbdbd;
+$body: #15171e;
 
 //Подключение шрифтов через google fonts ======================================================================================
+
 //Используй плагин Google Fonsts
 
 //Шрифт
@@ -20,10 +22,10 @@ $fontSize: 16;
 $minWidth: 320;
 
 //Максильманая ширина страницы
-$maxWidthPage: 1980;
+$maxWidthPage: 1920;
 
 //Максмальныей размер контейнера
-$maxWidthConteiner: 1200;
+$maxWidthConteiner: 1440;
 //Отступ у контейнера
 $containerPadding: 30;
 
@@ -40,14 +42,14 @@ $widthConteiner: $maxWidthConteiner + $containerPadding + px;
   max-width: $widthConteiner;
   margin: auto;
   //Если паддинг не нужен - закомментировать
-  padding: 0 $containerPadding/2 0 $containerPadding/2 0;
+  padding: 0 calc($containerPadding / 2 * 1px) 0 calc($containerPadding / 2 * 1px);
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: $mainFont, Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 600;
+  font-family: $mainFont, sans-serif;
+  background-color: $body;
 }
 
 img {
@@ -57,20 +59,31 @@ img {
 a {
   text-decoration: none;
 }
-button {
-  border: none;
-  background: transparent;
-}
 
 //МИКСИНЫ И ФУНКЦИИ==========================================================================================
 
 //Адаптивные размеры
+//Упрощенная версия
 
-@function strip-unit($value) {
-  @return $value / ($value * 0 + 1);
+// @mixin propertyAdaptive($property, $maxSize, $minSize) {
+//   $addSize: $maxSize - $minSize;
+//   $maxWidthPage: $maxWidthPage - 320;
+//   #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthPage}));
+// }
+
+@function percent($min, $max) {
+  @return calc((#{$min} / #{$max}) * 100%);
+}
+@function rem($px) {
+  @return calc(#{$px} / #{$fontSize} * 1rem);
 }
 
-@mixin valueAdaptive($value, $maxValue, $minValue, $maxWidth: $widthConteiner, $minWidth: 320, $bollean: false) {
+//============
+@function strip-unit($value) {
+  @return calc($value / ($value * 0 + 1));
+}
+
+@mixin valueAdaptive($value, $maxValue, $minValue, $maxWidth: $maxWidthConteiner, $minWidth: 320, $bollean: false) {
   $addSize: $maxValue - $minValue;
   @if ($bollean==1) {
     $addWidth: $maxWidthPage - 320;
@@ -78,26 +91,13 @@ button {
   } @else {
     $addWidth: $maxWidth - $minWidth;
     #{$value}: #{rem(#{$minValue})};
-    @media (min-width: #{$minWidth}px) {
+    @media (min-width: #{rem(#{$minWidth})} ) {
       #{$value}: calc(
         #{rem(#{$minValue})} + #{strip-unit($addSize)} * ((100vw - #{$minWidth}px) / #{strip-unit($addWidth)})
       );
     }
-    @media (min-width: #{$maxWidth}px) {
+    @media (min-width: #{rem(#{$maxWidth})} ) {
       #{$value}: #{rem(#{$maxValue})};
     }
   }
 }
-
-//получение процента от ширин
-
-@function percent($min, $max) {
-  @return calc((#{$min} / #{$max}) * 100%);
-}
-
-// Перевод из пикеселей в rem
-@function rem($px) {
-  @return calc(#{$px} / #{$fontSize} * 1rem);
-}
-
-//============

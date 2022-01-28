@@ -6,15 +6,15 @@
 
 // .icon-menu {
 //   display: none;
-//   @media (max-width: 1868px) {
+//   @media (max-width: 768px) {
 //     position: relative;
-//     width: 30px;
 //     height: 18px;
+//     width: rem(30);
 //     display: block;
 //     cursor: pointer;
 //     background: none;
 //     border: none;
-//     z-index: 5;
+//     z-index: 25;
 //     span,
 //     &::before,
 //     &::after {
@@ -24,7 +24,7 @@
 //       position: absolute;
 //       width: 100%;
 //       height: 2px;
-//       background: #000;
+//       background: #fff;
 //     }
 //     &::before {
 //       top: 0;
@@ -33,7 +33,7 @@
 //       bottom: 0;
 //     }
 //     span {
-//       top: calc(50%-1px);
+//       top: calc(50% - 1px);
 //     }
 //     .memu-open & {
 //       span {
@@ -41,11 +41,11 @@
 //       }
 //       &::before {
 //         transform: rotate(-45deg);
-//         top: calc(50%-1px);
+//         top: calc(50% - 1px);
 //       }
-//       &::before {
+//       &::after {
 //         transform: rotate(45deg);
-//         bottom: calc(50%-1px);
+//         bottom: calc(50% - 1px);
 //       }
 //     }
 //   }

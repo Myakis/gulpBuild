@@ -1,5 +1,5 @@
 import tippy from 'tippy.js';
-export function tippy() {
+export function typpes() {
   const tips = document.querySelectorAll('[data-type-content]');
   if (tips) {
     tips.forEach(tip => {

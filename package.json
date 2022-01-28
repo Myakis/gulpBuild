@@ -40,6 +40,7 @@
     "gulp-webpcss": "^1.1.1",
     "gulp-zip": "^5.1.0",
     "sass": "^1.45.2",
+    "simplebar": "^5.3.6",
     "tippy.js": "^6.3.7",
     "vinyl-ftp": "^0.6.1",
     "webp-converter": "2.2.3",

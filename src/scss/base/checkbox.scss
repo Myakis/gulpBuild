@@ -1,0 +1,41 @@
+.label__check {
+  position: relative;
+  margin-left: 20px;
+}
+
+[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  padding-left: 20px;
+  + span {
+    margin-top: 3px;
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    border: 1px dashed $primary;
+    margin-left: -20px;
+  }
+
+  &:checked + span {
+    // border: none;
+    &::before {
+      content: "";
+      position: absolute;
+      background: url("@img/check.svg") center / cover no-repeat;
+      width: 100%;
+      height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &:disabled + span {
+    border: 2px solid #ccc;
+  }
+  &:focus + span {
+    box-shadow: 0 0 0 1px #fff;
+  }
+}
