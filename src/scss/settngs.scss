@@ -117,18 +117,21 @@ p {
 
 @mixin valueAdaptive($value, $maxValue, $minValue, $maxWidth: $maxWidthConteiner, $minWidth: 320, $bollean: false) {
   $addSize: $maxValue - $minValue;
+
   @if ($bollean==1) {
     $addWidth: $maxWidthPage - 320;
     #{$value}: calc(#{rem($minValue)} + #{$addSize} * ((100vw - 320px) / #{$addWidth}));
   } @else {
     $addWidth: $maxWidth - $minWidth;
     #{$value}: #{rem(#{$minValue})};
-    @media (min-width: #{rem(#{$minWidth})} ) {
+
+    @media (min-width: (#{$minWidth}px) ) {
       #{$value}: calc(
         #{rem(#{$minValue})} + #{strip-unit($addSize)} * ((100vw - #{$minWidth}px) / #{strip-unit($addWidth)})
       );
     }
-    @media (min-width: #{rem(#{$maxWidth})} ) {
+
+    @media (min-width: (#{$maxWidth}px) ) {
       #{$value}: #{rem(#{$maxValue})};
     }
   }
