@@ -83,10 +83,20 @@ p {
 @function percent($min, $max) {
   @return calc((#{$min} / #{$max}) * 100%);
 }
+
 //Конвертация px в rem
 
 @function rem($px) {
   @return calc(#{$px} / #{$fontSize} * 1rem);
+}
+
+//Конвертация из px в em
+// ПРИМЕР em(20,18)
+// em(*РАЗМЕР ШРИФТА элемента или родителя, для которого применятеся *, *PX по макету*)
+//.block{font-size:20px;padding:em(20,15},em(20,25);
+
+@function em($fz, $value) {
+  @return calc($value / $fz * 1em);
 }
 
 //==========================================================================================================
@@ -124,13 +134,11 @@ p {
   } @else {
     $addWidth: $maxWidth - $minWidth;
     #{$value}: #{rem(#{$minValue})};
-
     @media (min-width: (#{$minWidth}px) ) {
       #{$value}: calc(
         #{rem(#{$minValue})} + #{strip-unit($addSize)} * ((100vw - #{$minWidth}px) / #{strip-unit($addWidth)})
       );
     }
-
     @media (min-width: (#{$maxWidth}px) ) {
       #{$value}: #{rem(#{$maxValue})};
     }
